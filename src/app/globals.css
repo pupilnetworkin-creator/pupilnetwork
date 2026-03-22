@@ -15,4 +15,76 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Cosmic Background Glow */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.15;
+  filter: blur(100px);
+}
+
+body::before {
+  background: radial-gradient(circle at 20% 30%, #3b82f6, transparent 40%);
+  animation: drift 20s ease-in-out infinite alternate;
+}
+
+body::after {
+  background: radial-gradient(circle at 80% 70%, #8b5cf6, transparent 40%);
+  animation: drift 25s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(5%, 5%) scale(1.1); }
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Tactile Interactions */
+.btn-tactile {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-tactile:active {
+  transform: scale(0.95);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Scrollbar Polish */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
 }

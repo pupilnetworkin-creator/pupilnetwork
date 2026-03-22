@@ -97,10 +97,9 @@ export default function AskQuestionPage() {
         </h1>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-2 mb-4">
           <p className="text-gray-400 text-lg">Stuck on a problem? The PupilNetwork community has your back.</p>
-          
           {!checkLoading && !isPremium && (
              <div className="inline-flex self-start sm:self-auto items-center gap-2 bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-full shadow-inner">
-               <div className={`w-2 h-2 rounded-full ${dailyQuestions >= 3 ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]'}`}></div>
+               <div className={`w-2 h-2 rounded-full ${dailyQuestions >= 3 ? "bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" : "bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"}`}></div>
                <span className="text-xs font-bold tracking-wide text-gray-300">
                  {dailyQuestions}/3 Free Questions Today
                </span>
@@ -121,7 +120,7 @@ export default function AskQuestionPage() {
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="e.g., Explain recursion in Python like I'm 5"
+            placeholder="e.g., Explain recursion in Python like I&apos;m 5"
             className="w-full bg-gray-950 border border-gray-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all font-medium"
           />
         </div>
@@ -171,8 +170,8 @@ export default function AskQuestionPage() {
           <div className="pt-6 border-t border-gray-800 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-2xl border border-yellow-500/30">
             <Sparkles className="text-yellow-500 mb-2" size={28} />
             <h3 className="text-lg font-bold text-yellow-500 mb-1">Daily Limit Reached</h3>
-            <p className="text-gray-300 text-sm text-center mb-4">You've hit the 3 questions/day limit for free users. Upgrade to Premium for unhindered learning.</p>
-            <Link href="/upgrade" className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-extrabold px-6 py-2.5 rounded-xl shadow-lg hover:shadow-yellow-500/25 transition-all hover:scale-105">
+            <p className="text-gray-300 text-sm text-center mb-4">You&apos;ve hit the 3 questions/day limit for free users. Upgrade to Premium for unhindered learning.</p>
+            <Link href="/upgrade" className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-extrabold px-6 py-2.5 rounded-xl shadow-lg shadow-yellow-500/25 transition-all hover:scale-105">
               Go Premium (Unlimited)
             </Link>
           </div>

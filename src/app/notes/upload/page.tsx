@@ -190,7 +190,7 @@ export default function UploadNotePage() {
         {/* Safety Notice */}
         <div className="flex items-start gap-3 text-gray-500 text-xs leading-relaxed px-2">
           <Shield size={16} className="shrink-0 text-gray-600" />
-          <p>By uploading, you agree that this material is helpful for academic purposes and doesn't violate copyright or community guidelines. Please ensure no personal info is visible.</p>
+          <p>By uploading, you agree that this material is helpful for academic purposes and doesn&apos;t violate copyright or community guidelines. Please ensure no personal info is visible.</p>
         </div>
 
         {/* Submit */}

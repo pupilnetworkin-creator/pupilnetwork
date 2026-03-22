@@ -12,7 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const fetchUserAndNotifications = async () => {
-      const { data } = await supabase.auth.getSession() as any;
+      const { data } = await supabase.auth.getSession();
       const session = data?.session;
       setUser(session?.user ?? null);
       
@@ -89,37 +89,41 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="border-b border-gray-800 bg-black/60 backdrop-blur-md sticky top-0 z-50">
+    <nav className="sticky top-0 z-50 glass-panel border-b border-white/5 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              PupilNetwork
+        <div className="flex justify-between h-16 items-center">
+          <div className="flex items-center gap-8">
+            <Link href="/" className="flex items-center gap-2 group transition-all duration-300 hover:scale-105 active:scale-95">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-violet-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all">
+                <Sparkles size={20} className="group-hover:rotate-12 transition-transform" />
+              </div>
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">PupilNetwork</span>
             </Link>
+
             {user && (
-              <div className="hidden md:flex space-x-4">
-                <Link href="/dashboard" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+              <div className="hidden md:flex items-center space-x-1">
+                <Link href="/dashboard" className="text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-white/5 btn-tactile">
                   <Home size={16} /> Dashboard
                 </Link>
-                <Link href="/rooms" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <Link href="/rooms" className="text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-white/5 btn-tactile">
                   <BookOpen size={16} /> Rooms
                 </Link>
-                <Link href="/notes" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <Link href="/notes" className="text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-white/5 btn-tactile">
                   <FileText size={16} /> Notes
                 </Link>
-                <Link href="/chat" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors relative">
+                <Link href="/chat" className="text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-white/5 btn-tactile relative">
                   <MessageSquare size={16} /> Chat
                   {hasNotifications && (
-                    <span className="absolute top-1 right-0 w-2 h-2 bg-red-500 rounded-full border border-black"></span>
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-black animate-pulse"></span>
                   )}
                 </Link>
-                <Link href="/questions" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <Link href="/questions" className="text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-white/5 btn-tactile">
                   <BookOpen size={16} /> Questions
                 </Link>
-                <Link href="/friends" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <Link href="/friends" className="text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-white/5 btn-tactile">
                   <Users size={16} /> Community
                 </Link>
-                <Link href="/leaderboard" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <Link href="/leaderboard" className="text-gray-400 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-white/5 btn-tactile">
                   <Trophy size={16} /> Leaderboard
                 </Link>
               </div>
@@ -137,30 +141,32 @@ export default function Navbar() {
                     PRO
                   </span>
                 )}
-                <Link href="/profile" className="text-gray-300 hover:text-white flex items-center gap-2 transition-colors ml-2 relative">
-                  <User size={18} />
+                <Link href="/profile" className="flex items-center gap-2 p-1 pr-3 rounded-full hover:bg-white/5 transition-all btn-tactile relative group">
+                  <div className="w-8 h-8 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center text-gray-400 group-hover:text-white overflow-hidden border border-white/10">
+                    <User size={18} />
+                  </div>
                   {hasNotifications && (
-                    <span className="absolute -top-1 -left-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-black animate-pulse"></span>
+                    <span className="absolute top-1 left-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-black animate-pulse"></span>
                   )}
-                  <span className="hidden sm:inline text-sm font-medium">{user.email?.split("@")[0]}</span>
+                  <span className="hidden sm:inline text-sm font-bold text-gray-400 group-hover:text-white transition-colors">{user.email?.split("@")[0]}</span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-gray-400 hover:text-red-400 p-2 rounded-full transition-colors"
+                  className="text-gray-400 hover:text-red-400 p-2 rounded-full transition-all btn-tactile hover:bg-red-500/10"
                   title="Logout"
                 >
                   <LogOut size={18} />
                 </button>
               </>
             ) : (
-              <>
-                <Link href="/login" className="text-gray-300 hover:text-white text-sm font-medium px-3 py-2">
+              <div className="flex items-center gap-4">
+                <Link href="/login" className="text-gray-400 hover:text-white text-sm font-bold px-4 py-2 transition-all btn-tactile">
                   Log in
                 </Link>
-                <Link href="/signup" className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors">
-                  Sign up
+                <Link href="/signup" className="bg-white text-black text-sm font-black px-6 py-2.5 rounded-full transition-all hover:bg-gray-200 btn-tactile shadow-lg shadow-white/10">
+                  Join Free
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>

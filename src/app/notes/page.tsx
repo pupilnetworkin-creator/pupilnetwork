@@ -25,7 +25,7 @@ export default function NotesPage() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("Error fetching notes:", error);
+      console.error("Error fetching notes:", JSON.stringify(error, null, 2));
     } else {
       setNotes(data || []);
     }

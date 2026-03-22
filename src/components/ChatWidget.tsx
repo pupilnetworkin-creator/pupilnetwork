@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
+import Link from "next/link";
 import { MessageCircle, X, Send, Bot } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -124,11 +125,11 @@ export default function ChatWidget() {
                 className="w-full bg-gray-800 border border-gray-700 text-white rounded-full pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                disabled={loading}
+                disabled={loading || (!isPremium && usage.used >= usage.limit)}
               />
               <button
                 type="submit"
-                disabled={loading || !input.trim()}
+                disabled={loading || !input.trim() || (!isPremium && usage.used >= usage.limit)}
                 className="absolute right-1 top-1 bottom-1 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white p-2 rounded-full transition-colors flex items-center justify-center aspect-square"
               >
                 <Send size={16} className="-ml-0.5" />
@@ -140,13 +141,19 @@ export default function ChatWidget() {
                    AI Usage: <span className={usage.used >= usage.limit ? "text-red-400" : "text-white"}>{usage.used} / {usage.limit} today</span>
                  </p>
                  {usage.used >= usage.limit && (
-                   <div className="w-full bg-red-900/30 border border-red-500/50 text-red-300 text-xs p-2 rounded-lg text-center mt-2 mb-2">
-                     You've reached your limit.
+                   <div className="w-full bg-red-900/30 border border-red-500/50 text-red-300 text-xs p-2 rounded-lg text-center mt-2 mb-2 flex flex-col items-center">
+                     <h3 className="text-lg font-bold text-yellow-500 mb-1">Daily Limit Reached</h3>
+                     <p className="text-gray-300 text-sm text-center mb-4">You&apos;ve hit the {usage.limit} questions/day limit for free users. Upgrade to Premium for unhindered learning.</p>
+                     <Link href="/upgrade" className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-extrabold px-6 py-2.5 rounded-xl shadow-lg hover:shadow-yellow-500/25 transition-all hover:scale-105">
+                       Go Premium (Unlimited)
+                     </Link>
                    </div>
                  )}
-                 <button onClick={(e) => { e.preventDefault(); router.push('/upgrade'); }} className="text-[10px] text-yellow-500 hover:text-yellow-400 font-bold uppercase tracking-widest mt-1 transition-colors hover:scale-105 active:scale-95">
-                   Upgrade to continue without limits 🚀
-                 </button>
+                 {! (usage.used >= usage.limit) && ( // Only show upgrade button if limit not reached, otherwise the full message above is shown
+                   <button onClick={(e) => { e.preventDefault(); router.push('/upgrade'); }} className="text-[10px] text-yellow-500 hover:text-yellow-400 font-bold uppercase tracking-widest mt-1 transition-colors hover:scale-105 active:scale-95">
+                     Upgrade to continue without limits 🚀
+                   </button>
+                 )}
               </div>
             )}
           </div>
