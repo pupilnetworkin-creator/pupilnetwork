@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { LogOut, User, Users, MessageSquare, Trophy, Home, Sparkles, BookOpen } from "lucide-react";
+import { LogOut, User, Users, MessageSquare, Trophy, Home, Sparkles, BookOpen, FileText } from "lucide-react";
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
@@ -103,6 +103,9 @@ export default function Navbar() {
                 </Link>
                 <Link href="/rooms" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                   <BookOpen size={16} /> Rooms
+                </Link>
+                <Link href="/notes" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                  <FileText size={16} /> Notes
                 </Link>
                 <Link href="/chat" className="text-gray-300 hover:text-white flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors relative">
                   <MessageSquare size={16} /> Chat
