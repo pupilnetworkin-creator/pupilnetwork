@@ -11,7 +11,11 @@ const PROTECTED_ROUTES = [
   '/premium',
 ]
 
-export async function middleware(request: NextRequest) {
+/**
+ * Next.js Proxy (formerly Middleware)
+ * Handles authentication, session refreshing, and route protection.
+ */
+export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   })
