@@ -69,6 +69,7 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
               <div className="flex items-center text-xs text-muted-foreground font-medium whitespace-nowrap">
                 <Users className="w-3.5 h-3.5 mr-1" />
                 {room.member_count + 1} online
+              </div>
             </div>
             <h1 className="font-bold text-foreground text-lg truncate pr-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               {room.name}
