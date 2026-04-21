@@ -180,13 +180,13 @@ export default function QuestionDetailPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <Link href="/qa">
-        <Button variant="ghost" className="text-slate-500 -ml-4 hover:bg-transparent hover:text-indigo-600">
+        <Button variant="ghost" className="text-muted-foreground -ml-4 hover:bg-transparent hover:text-indigo-600 dark:hover:text-indigo-400">
           <ChevronLeft className="w-4 h-4 mr-1" /> Back to Q&A Board
         </Button>
       </Link>
 
       {/* QUESTION */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm">
+      <div className="bg-card rounded-2xl border border-border p-6 md:p-8 shadow-sm transition-colors">
         <div className="flex gap-4 md:gap-6">
           {/* Mobile Upvote Hide, Desktop Show */}
           <div className="hidden md:flex flex-col items-center shrink-0 w-12">
@@ -194,13 +194,13 @@ export default function QuestionDetailPage() {
               onClick={handleQuestionUpvote}
               disabled={hasUpvoted || !user || user.id === post.author_id}
               className={`p-2 rounded-full mb-2 transition-colors ${
-                hasUpvoted ? 'text-indigo-600 bg-indigo-50' : 
-                user && user.id !== post.author_id ? 'text-slate-400 hover:text-indigo-600 hover:bg-slate-50' : 'text-slate-300 cursor-not-allowed'
+                hasUpvoted ? 'text-indigo-600 bg-indigo-50 dark:bg-indigo-950/30' : 
+                user && user.id !== post.author_id ? 'text-muted-foreground hover:text-indigo-600 hover:bg-muted' : 'text-muted-foreground/30 cursor-not-allowed'
               }`}
             >
               <ArrowUp className="w-8 h-8" />
             </button>
-            <span className={`font-bold text-xl ${hasUpvoted ? 'text-indigo-600' : 'text-slate-600'}`}>
+            <span className={`font-bold text-xl ${hasUpvoted ? 'text-indigo-600 dark:text-indigo-400' : 'text-foreground'}`}>
               {upvotes}
             </span>
           </div>
@@ -211,24 +211,24 @@ export default function QuestionDetailPage() {
                 {post.subject}
               </Badge>
               {post.is_solved && (
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 font-medium text-xs flex items-center gap-1">
+                <Badge variant="outline" className="bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800 font-medium text-xs flex items-center gap-1">
                   <CheckCircle2 className="w-3 h-3" /> Solved
                 </Badge>
               )}
-              <span className="text-xs text-slate-500 ml-auto flex items-center gap-2">
+              <span className="text-xs text-muted-foreground ml-auto flex items-center gap-2">
                  {/* Mobile Upvote Inline */}
-                <span className="md:hidden flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded text-slate-700 font-bold">
+                <span className="md:hidden flex items-center gap-1 bg-muted px-2 py-0.5 rounded text-foreground font-bold">
                    <ArrowUp className="w-3 h-3"/> {upvotes}
                 </span>
                 Asked {timeAgo(post.created_at)}
               </span>
             </div>
 
-            <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               {post.title}
             </h1>
 
-            <div className="prose prose-slate max-w-none mb-8">
+            <div className="prose prose-slate dark:prose-invert max-w-none mb-8">
               <ReactMarkdown
                 components={{
                   code({node, inline, className, children, ...props}: any) {
@@ -254,16 +254,16 @@ export default function QuestionDetailPage() {
               </ReactMarkdown>
             </div>
 
-            <div className="flex justify-end pt-4 border-t border-slate-100">
-              <div className="bg-indigo-50/50 rounded-xl p-3 flex items-center gap-3 border border-indigo-50">
-                <span className="text-xs text-slate-500">Asked by</span>
+            <div className="flex justify-end pt-4 border-t border-border">
+              <div className="bg-muted/50 rounded-xl p-3 flex items-center gap-3 border border-border">
+                <span className="text-xs text-muted-foreground">Asked by</span>
                 <div className="flex items-center gap-2">
                   <Avatar className="w-8 h-8">
                     <AvatarFallback style={{ backgroundColor: post.author?.avatar_color || '#cbd5e1', color: 'white', fontSize: '12px' }}>
                       {getInitials(post.author?.display_name || '?')}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="text-sm font-semibold text-slate-700">{post.author?.display_name || 'Anonymous'}</span>
+                  <span className="text-sm font-semibold text-foreground">{post.author?.display_name || 'Anonymous'}</span>
                 </div>
               </div>
             </div>
@@ -272,8 +272,8 @@ export default function QuestionDetailPage() {
       </div>
 
       {/* ANSWERS HEADER */}
-      <div className="flex items-center gap-2 text-xl font-bold text-slate-900 pt-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-        <MessageSquare className="w-6 h-6 text-indigo-500" />
+      <div className="flex items-center gap-2 text-xl font-bold text-foreground pt-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <MessageSquare className="w-6 h-6 text-indigo-500 dark:text-indigo-400" />
         {answers.length} {answers.length === 1 ? 'Answer' : 'Answers'}
       </div>
 
@@ -292,18 +292,18 @@ export default function QuestionDetailPage() {
       </div>
 
       {/* WRITE ANSWER */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mt-8">
-        <h3 className="text-lg font-bold text-slate-900 mb-4 font-sans">Your Answer</h3>
+      <div className="bg-card rounded-xl border border-border p-6 shadow-sm mt-8 transition-colors">
+        <h3 className="text-lg font-bold text-foreground mb-4 font-sans">Your Answer</h3>
         {user ? (
           <form onSubmit={handleSubmitAnswer} className="space-y-4">
             <Textarea 
               placeholder="Write your answer here. Markdown is supported for code blocks and formatting..." 
-              className="min-h-[150px] font-mono text-sm leading-relaxed border-slate-300 focus-visible:ring-indigo-500"
+              className="min-h-[150px] font-mono text-sm leading-relaxed border-border bg-muted/30 focus-visible:ring-indigo-500 text-foreground"
               value={newAnswer}
               onChange={(e) => setNewAnswer(e.target.value)}
             />
             <div className="flex justify-between items-center">
-              <p className="text-xs text-slate-500 hidden sm:block">
+              <p className="text-xs text-muted-foreground hidden sm:block">
                 Tip: Use ```language for code blocks. Good answers get upvoted!
               </p>
               <Button type="submit" className="bg-indigo-600 hover:bg-indigo-700" disabled={submitting || !newAnswer.trim()}>
@@ -313,10 +313,10 @@ export default function QuestionDetailPage() {
             </div>
           </form>
         ) : (
-          <div className="text-center py-6 bg-slate-50 rounded-lg border border-slate-100 border-dashed">
-            <p className="text-slate-600 mb-3">Please log in to answer this question.</p>
+          <div className="text-center py-6 bg-muted rounded-lg border border-border border-dashed">
+            <p className="text-muted-foreground mb-3">Please log in to answer this question.</p>
             <Link href={`/login?redirectTo=/qa/${id}`}>
-              <Button variant="outline">Log in</Button>
+              <Button variant="outline" className="border-border hover:bg-background">Log in</Button>
             </Link>
           </div>
         )}

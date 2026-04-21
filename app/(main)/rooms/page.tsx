@@ -103,10 +103,10 @@ export default function RoomsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             Study Rooms
           </h1>
-          <p className="text-slate-500 mt-1">Join a live room to study with classmates.</p>
+          <p className="text-muted-foreground mt-1">Join a live room to study with classmates.</p>
         </div>
 
         <Dialog open={createOpen} onOpenChange={setCreateOpen}>
@@ -182,12 +182,12 @@ export default function RoomsPage() {
       </div>
 
       {/* Filters & Search */}
-      <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+      <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between bg-card p-4 rounded-2xl border border-border shadow-sm">
         <div className="flex overflow-x-auto pb-2 md:pb-0 w-full md:w-auto gap-2 no-scrollbar hide-scrollbar">
           <Button
             variant={filter === 'All' ? 'default' : 'secondary'}
             onClick={() => setFilter('All')}
-            className={`rounded-full shrink-0 ${filter === 'All' ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
+            className={`rounded-full shrink-0 ${filter === 'All' ? 'bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700' : 'bg-muted text-muted-foreground hover:bg-secondary'}`}
           >
             All
           </Button>
@@ -196,7 +196,7 @@ export default function RoomsPage() {
              key={subject}
              variant={filter === subject ? 'default' : 'secondary'}
              onClick={() => setFilter(subject)}
-             className={`rounded-full shrink-0 px-4 ${filter === subject ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
+             className={`rounded-full shrink-0 px-4 ${filter === subject ? 'bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700' : 'bg-muted text-muted-foreground hover:bg-secondary'}`}
            >
              {subject}
            </Button>
@@ -204,10 +204,10 @@ export default function RoomsPage() {
         </div>
         
         <div className="relative w-full md:w-72 shrink-0">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input 
             placeholder="Search rooms..." 
-            className="pl-9 bg-slate-50 border-slate-200 focus-visible:ring-indigo-500 rounded-xl"
+            className="pl-9 bg-muted/50 border-border focus-visible:ring-indigo-500 rounded-xl text-foreground"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -231,9 +231,9 @@ export default function RoomsPage() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-white rounded-3xl border border-slate-100 border-dashed">
-          <p className="text-slate-500 text-lg mb-4">No rooms found matching your criteria.</p>
-          <Button variant="outline" onClick={() => setCreateOpen(true)} className="border-indigo-200 text-indigo-700 hover:bg-indigo-50">
+        <div className="text-center py-20 bg-card rounded-3xl border border-border border-dashed">
+          <p className="text-muted-foreground text-lg mb-4">No rooms found matching your criteria.</p>
+          <Button variant="outline" onClick={() => setCreateOpen(true)} className="border-indigo-200 dark:border-indigo-900 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/30">
             Create the first one
           </Button>
         </div>

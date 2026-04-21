@@ -56,10 +56,10 @@ export default async function DashboardPage() {
     <div className="space-y-8">
       {/* Welcome Section */}
       <div>
-        <h1 className="text-3xl font-bold text-slate-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
           Hey {profile?.display_name?.split(' ')[0]}! 👋
         </h1>
-        <p className="text-slate-500 mt-2 text-lg">Ready to study today?</p>
+        <p className="text-muted-foreground mt-2 text-lg">Ready to study today?</p>
       </div>
 
       {/* Quick AI Search Bar */}
@@ -94,40 +94,40 @@ export default async function DashboardPage() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
+        <Card className="bg-card">
           <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-            <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-3">
-              <Trophy className="w-6 h-6 text-amber-600" />
+            <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mb-3">
+              <Trophy className="w-6 h-6 text-amber-600 dark:text-amber-400" />
             </div>
-            <div className="text-2xl font-bold text-slate-900">{profile?.points || 0}</div>
-            <div className="text-sm font-medium text-slate-500">Points Earned</div>
+            <div className="text-2xl font-bold text-foreground">{profile?.points || 0}</div>
+            <div className="text-sm font-medium text-muted-foreground">Points Earned</div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-card">
           <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
-              <MessagesSquare className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-3">
+              <MessagesSquare className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
-            <div className="text-2xl font-bold text-slate-900">0</div>
-            <div className="text-sm font-medium text-slate-500">Questions Answered</div>
+            <div className="text-2xl font-bold text-foreground">0</div>
+            <div className="text-sm font-medium text-muted-foreground">Questions Answered</div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-card">
           <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-            <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-3">
-              <Users className="w-6 h-6 text-emerald-600" />
+            <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-3">
+              <Users className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
             </div>
-            <div className="text-2xl font-bold text-slate-900">0</div>
-            <div className="text-sm font-medium text-slate-500">Rooms Joined</div>
+            <div className="text-2xl font-bold text-foreground">0</div>
+            <div className="text-sm font-medium text-muted-foreground">Rooms Joined</div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-6 flex flex-col items-center justify-center text-center bg-gradient-to-b from-indigo-50 to-white border-indigo-100">
-            <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-3">
-              <Sparkles className="w-6 h-6 text-indigo-600" />
+        <Card className="bg-card">
+          <CardContent className="p-6 flex flex-col items-center justify-center text-center bg-gradient-to-b from-indigo-50/50 to-background border-indigo-100 dark:border-indigo-900/50">
+            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-3">
+              <Sparkles className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
             </div>
-            <div className="text-2xl font-bold text-indigo-900">{aiUsage?.count || 0}</div>
-            <div className="text-sm font-medium text-indigo-600">AI Inquiries (5hr)</div>
+            <div className="text-2xl font-bold text-indigo-900 dark:text-indigo-300">{aiUsage?.count || 0}</div>
+            <div className="text-sm font-medium text-indigo-600 dark:text-indigo-400">AI Inquiries (5hr)</div>
           </CardContent>
         </Card>
       </div>
@@ -137,10 +137,10 @@ export default async function DashboardPage() {
         {/* Active Rooms */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-xl font-bold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Popular Study Rooms
             </h2>
-            <Link href="/rooms" className="text-sm font-medium text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+            <Link href="/rooms" className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 flex items-center gap-1">
               View all <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -152,8 +152,8 @@ export default async function DashboardPage() {
               ))}
             </div>
           ) : (
-            <div className="bg-slate-50 border border-slate-100 rounded-xl p-8 text-center text-slate-500">
-              No active rooms right now. <Link href="/rooms" className="text-indigo-600 hover:underline">Create the first one!</Link>
+            <div className="bg-muted border border-border rounded-xl p-8 text-center text-muted-foreground">
+              No active rooms right now. <Link href="/rooms" className="text-indigo-600 dark:text-indigo-400 hover:underline">Create the first one!</Link>
             </div>
           )}
         </div>
@@ -161,33 +161,33 @@ export default async function DashboardPage() {
         {/* Recent QA */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-xl font-bold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Recent Questions
             </h2>
-            <Link href="/qa" className="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+            <Link href="/qa" className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-700">
               Board
             </Link>
           </div>
 
-          <Card>
-            <CardHeader className="pb-3 border-b">
-              <CardTitle className="text-base font-semibold">Latest Posts</CardTitle>
+          <Card className="bg-card">
+            <CardHeader className="pb-3 border-b border-border">
+              <CardTitle className="text-base font-semibold text-foreground">Latest Posts</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
               {recentQA && recentQA.length > 0 ? (
-                <div className="divide-y">
+                <div className="divide-y divide-border">
                   {recentQA.map((post) => (
-                    <Link href={`/qa/${post.id}`} key={post.id} className="block hover:bg-slate-50 p-4 transition-colors">
+                    <Link href={`/qa/${post.id}`} key={post.id} className="block hover:bg-muted p-4 transition-colors">
                       <div className="flex gap-3">
                         <div className="shrink-0 pt-1">
-                          <div className={`w-2 h-2 rounded-full ${post.is_solved ? 'bg-green-500' : 'bg-slate-300'}`} />
+                          <div className={`w-2 h-2 rounded-full ${post.is_solved ? 'bg-green-500' : 'bg-muted-foreground'}`} />
                         </div>
                         <div>
-                          <h4 className="font-medium text-slate-900 text-sm line-clamp-2 leading-tight mb-1">
+                          <h4 className="font-medium text-foreground text-sm line-clamp-2 leading-tight mb-1">
                             {post.title}
                           </h4>
-                          <span className="text-xs font-medium text-slate-500">{post.subject}</span>
-                          <span className="text-xs text-slate-400 ml-2">by {(post as any).author?.display_name || 'Unknown'}</span>
+                          <span className="text-xs font-medium text-muted-foreground">{post.subject}</span>
+                          <span className="text-xs text-muted-foreground/60 ml-2">by {(post as any).author?.display_name || 'Unknown'}</span>
                         </div>
                       </div>
                     </Link>

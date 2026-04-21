@@ -54,10 +54,10 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
   return (
     <div className="flex flex-col h-[calc(100vh-80px)] -mt-4">
       {/* Room Header */}
-      <div className="bg-white border-b border-slate-200 py-3 px-4 sm:px-6 flex items-center justify-between shrink-0 shadow-sm z-10">
+      <div className="bg-card border-b border-border py-3 px-4 sm:px-6 flex items-center justify-between shrink-0 shadow-sm z-10 transition-colors">
         <div className="flex items-center gap-4">
           <Link href="/rooms">
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-500 hover:text-slate-900 shrink-0">
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground shrink-0">
               <ChevronLeft className="w-5 h-5" />
             </Button>
           </Link>
@@ -66,12 +66,12 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
               <Badge className={`${subjectColor} border-none text-[10px] uppercase font-bold py-0 h-4`}>
                 {room.subject}
               </Badge>
-              <div className="flex items-center text-xs text-slate-500 font-medium whitespace-nowrap">
+              <div className="flex items-center text-xs text-muted-foreground font-medium whitespace-nowrap">
                 <Users className="w-3.5 h-3.5 mr-1" />
                 {room.member_count + 1} online
               </div>
             </div>
-            <h1 className="font-bold text-slate-900 text-lg truncate pr-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="font-bold text-foreground text-lg truncate pr-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               {room.name}
             </h1>
           </div>
@@ -81,7 +81,7 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
           <RoomTimer expiresAt={room.expires_at} />
         
         {room.description && (
-          <div className="hidden md:flex items-center gap-2 text-sm text-slate-500 bg-slate-50 px-3 py-1.5 rounded-lg max-w-sm truncate border border-slate-100">
+          <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-lg max-w-sm truncate border border-border">
             <Info className="w-4 h-4 shrink-0 text-indigo-400" />
             <span className="truncate">{room.description}</span>
           </div>
@@ -90,16 +90,16 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
     </div>
 
       {/* Main Workspace Split */}
-      <div className="flex-1 flex flex-col lg:flex-row gap-4 p-4 min-h-0 overflow-hidden bg-slate-50/50 relative">
+      <div className="flex-1 flex flex-col lg:flex-row gap-4 p-4 min-h-0 overflow-hidden bg-background relative transition-colors">
         {room.expires_at && new Date(room.expires_at) < new Date() && (
-          <div className="absolute inset-0 z-50 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-6">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
-              <AlertTriangle className="w-8 h-8 text-red-600" />
+          <div className="absolute inset-0 z-50 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-6">
+            <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4">
+              <AlertTriangle className="w-8 h-8 text-red-600 dark:text-red-400" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Session Expired
             </h2>
-            <p className="text-slate-500 max-w-sm mb-6">
+            <p className="text-muted-foreground max-w-sm mb-6">
               This study session has reached its time limit and is now closed.
             </p>
             <Link href="/rooms">
@@ -120,7 +120,7 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
           <PremiumGate feature="Live Video Calls">
             <JitsiEmbed roomId={roomId} displayName={profile?.display_name || 'Student'} />
           </PremiumGate>
-          <div className="mt-3 text-center lg:text-left text-xs text-slate-400">
+          <div className="mt-3 text-center lg:text-left text-xs text-muted-foreground/60">
             Video powered by Jitsi Meet. Completely secure and encrypted.
           </div>
         </div>

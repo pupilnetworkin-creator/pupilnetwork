@@ -36,16 +36,16 @@ export default async function AIBuddyPage(props: { searchParams: Promise<{ q?: s
     <div className="flex flex-col h-[calc(100vh-80px)] max-w-5xl mx-auto w-full -mt-4">
       {/* Header */}
       <div className="py-4 shrink-0 px-2 lg:px-0">
-        <h1 className="text-3xl font-bold text-slate-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
           AI Study Buddy
         </h1>
-        <p className="text-slate-500 mt-1">
+        <p className="text-muted-foreground mt-1">
           Powered by Groq · Llama 3.1. Fast, accurate, and available 24/7.
         </p>
       </div>
 
       {/* Chat Window */}
-      <div className="flex-1 min-h-0 bg-slate-50 p-2 lg:p-0 rounded-2xl">
+      <div className="flex-1 min-h-0 bg-muted/30 p-2 lg:p-4 rounded-2xl border border-border border-dashed transition-colors">
         <AIChatWindow 
           initialQuery={initialQuery} 
           isPremium={isPremium} 

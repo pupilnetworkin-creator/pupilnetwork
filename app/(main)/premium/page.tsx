@@ -78,37 +78,37 @@ export default function PremiumPage() {
   if (isPremium) {
     return (
       <div className="max-w-2xl mx-auto py-12 px-4 animate-fade-in-up">
-        <Card className="border-indigo-200 shadow-xl overflow-hidden relative bg-white">
+        <Card className="border-indigo-200 dark:border-indigo-900/50 shadow-xl overflow-hidden relative bg-card transition-colors">
           <div className="absolute top-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
           <CardContent className="p-10 text-center flex flex-col items-center">
-            <div className="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mb-6 ring-8 ring-indigo-50/50">
-              <Crown className="w-10 h-10 text-indigo-600" />
+            <div className="w-20 h-20 bg-indigo-50 dark:bg-indigo-950/20 rounded-full flex items-center justify-center mb-6 ring-8 ring-indigo-50/30 dark:ring-indigo-900/10">
+              <Crown className="w-10 h-10 text-indigo-600 dark:text-indigo-400" />
             </div>
             
-            <Badge className="bg-green-100 text-green-800 hover:bg-green-100 border-green-200 mb-4 px-3 py-1 font-medium">
+            <Badge className="bg-green-100 dark:bg-green-950/40 text-green-800 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-950/50 border-green-200 dark:border-green-900/50 mb-4 px-3 py-1 font-medium">
               <CheckCircle2 className="w-4 h-4 mr-1.5 inline" /> Premium Active
             </Badge>
 
-            <h2 className="text-3xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-bold text-foreground mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               You're a Premium Member ⭐
             </h2>
             
-            <p className="text-slate-600 mb-8 max-w-md leading-relaxed">
+            <p className="text-muted-foreground mb-8 max-w-md leading-relaxed">
               Thanks for supporting PupilNetwork! Your account is fully unlocked.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full text-left mb-8">
-              <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-start gap-3">
-                 <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
-                 <div><p className="font-semibold text-slate-800 text-sm">Unlimited Rooms</p><p className="text-xs text-slate-500">Create & join without limits</p></div>
+              <div className="bg-muted/50 rounded-xl p-4 border border-border flex items-start gap-3">
+                 <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                 <div><p className="font-semibold text-foreground text-sm">Unlimited Rooms</p><p className="text-xs text-muted-foreground">Create & join without limits</p></div>
               </div>
-              <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-start gap-3">
-                 <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
-                 <div><p className="font-semibold text-slate-800 text-sm">Live Video Calls</p><p className="text-xs text-slate-500">Unlocked in all study rooms</p></div>
+              <div className="bg-muted/50 rounded-xl p-4 border border-border flex items-start gap-3">
+                 <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                 <div><p className="font-semibold text-foreground text-sm">Live Video Calls</p><p className="text-xs text-muted-foreground">Unlocked in all study rooms</p></div>
               </div>
-              <div className="col-span-1 sm:col-span-2 bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-start gap-3">
-                 <Sparkles className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
-                 <div><p className="font-semibold text-slate-800 text-sm">Priority AI Study Buddy</p><p className="text-xs text-slate-500">Ask unlimited questions without rate limits</p></div>
+              <div className="col-span-1 sm:col-span-2 bg-muted/50 rounded-xl p-4 border border-border flex items-start gap-3">
+                 <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                 <div><p className="font-semibold text-foreground text-sm">Priority AI Study Buddy</p><p className="text-xs text-muted-foreground">Ask unlimited questions without rate limits</p></div>
               </div>
             </div>
 
@@ -126,13 +126,13 @@ export default function PremiumPage() {
     <div className="max-w-4xl mx-auto space-y-12 pb-12">
       {/* Header */}
       <div className="text-center px-4 pt-8">
-        <Badge className="bg-indigo-100 text-indigo-800 hover:bg-indigo-100 border-none mb-4 tracking-widest uppercase font-bold py-1">
+        <Badge className="bg-indigo-100 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-400 hover:bg-indigo-100 border-none mb-4 tracking-widest uppercase font-bold py-1">
           Support the Project
         </Badge>
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
           Upgrade to Premium ⭐
         </h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Unlock the full power of PupilNetwork for the price of a coffee. 
           Your contribution keeps server costs at ₹0 for other students.
         </p>
@@ -142,7 +142,7 @@ export default function PremiumPage() {
         
         {/* Left: What you get */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-indigo-600 rounded-3xl p-8 text-white shadow-xl shadow-indigo-200 relative overflow-hidden">
+          <div className="bg-indigo-600 dark:bg-indigo-700/80 rounded-3xl p-8 text-white shadow-xl shadow-indigo-200 dark:shadow-none relative overflow-hidden transition-colors">
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none" />
             
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
@@ -180,21 +180,21 @@ export default function PremiumPage() {
           {/* Section Divider */}
           <div id="redeem-section" className="relative py-4">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-slate-200" />
+              <span className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-slate-50 px-4 text-slate-500 font-semibold tracking-wider flex items-center gap-2">
+              <span className="bg-background px-4 text-muted-foreground font-semibold tracking-wider flex items-center gap-2">
                 Already paid?
               </span>
             </div>
           </div>
 
           {/* Redeem Code Block */}
-          <Card className="border-slate-200 shadow-sm relative overflow-hidden">
+          <Card className="border-border shadow-sm relative overflow-hidden bg-card transition-colors">
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-500 to-purple-500" />
             <CardContent className="p-6 md:p-8">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Redeem Premium Code</h3>
-              <p className="text-slate-500 text-sm mb-6">Received a code? Enter it below to unlock premium instantly.</p>
+              <h3 className="text-xl font-bold text-foreground mb-2">Redeem Premium Code</h3>
+              <p className="text-muted-foreground text-sm mb-6">Received a code? Enter it below to unlock premium instantly.</p>
               
               <form onSubmit={handleRedeem} className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
@@ -202,7 +202,7 @@ export default function PremiumPage() {
                     value={codeToRedeem}
                     onChange={(e) => setCodeToRedeem(e.target.value.toUpperCase())}
                     placeholder="e.g. PUPIL-XXXX-XXXX"
-                    className="font-mono text-center tracking-[0.2em] sm:text-left h-12 uppercase focus-visible:ring-indigo-500 border-slate-300"
+                    className="font-mono text-center tracking-[0.2em] sm:text-left h-12 uppercase focus-visible:ring-indigo-500 border-border bg-muted/30 text-foreground"
                     required
                   />
                 </div>

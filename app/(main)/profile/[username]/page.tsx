@@ -21,8 +21,8 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
   if (error || !profile) {
     return (
       <div className="text-center py-20">
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">User Not Found</h1>
-        <p className="text-slate-500">This profile does not exist.</p>
+        <h1 className="text-2xl font-bold text-foreground mb-2">User Not Found</h1>
+        <p className="text-muted-foreground">This profile does not exist.</p>
       </div>
     )
   }
@@ -56,7 +56,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
     <div className="max-w-4xl mx-auto space-y-6">
 
       {/* ── Profile Header Card ── */}
-      <Card className="border-none shadow-lg overflow-hidden bg-white">
+      <Card className="border-none shadow-lg overflow-hidden bg-card transition-colors">
         {/* Banner */}
         <div
           className="h-32 w-full"
@@ -67,7 +67,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
           <div className="flex flex-col sm:flex-row sm:items-end gap-6">
             {/* Avatar */}
             <div className="relative group/avatar">
-              <Avatar className="w-32 h-32 border-4 border-white shadow-2xl ring-1 ring-slate-100 shrink-0 overflow-hidden bg-white">
+              <Avatar className="w-32 h-32 border-4 border-background shadow-2xl ring-1 ring-border shrink-0 overflow-hidden bg-background">
                 {profile.avatar_url && (
                   <AvatarImage src={profile.avatar_url} alt={profile.display_name} className="object-cover" />
                 )}
@@ -83,7 +83,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
             {/* Info */}
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-3 mb-1.5">
-                <h1 className="text-3xl font-bold text-slate-900 tracking-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h1 className="text-3xl font-bold text-foreground tracking-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                   {profile.display_name}
                 </h1>
                 
@@ -95,7 +95,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
                   )}
                   
                   {/* Integrated Points Pill */}
-                  <div className="flex items-center gap-1.5 bg-indigo-50 border border-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-bold text-xs shadow-sm">
+                  <div className="flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full font-bold text-xs shadow-sm">
                     <Sparkles className="w-3 h-3 text-indigo-500" />
                     {profile.points ?? 0} pts
                   </div>
@@ -106,12 +106,12 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
                 )}
               </div>
               
-              <p className="text-slate-400 font-medium mb-3">@{profile.username}</p>
+              <p className="text-muted-foreground/60 font-medium mb-3">@{profile.username}</p>
               
               {profile.bio ? (
-                <p className="text-slate-600 text-[15px] leading-relaxed max-w-2xl mb-4 font-medium">{profile.bio}</p>
+                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-2xl mb-4 font-medium">{profile.bio}</p>
               ) : (
-                <p className="text-slate-400 italic text-sm mb-4">No bio provided yet.</p>
+                <p className="text-muted-foreground/40 italic text-sm mb-4">No bio provided yet.</p>
               )}
 
               {/* Social Links */}
@@ -145,14 +145,14 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
           { icon: MessageCircle, label: 'Answers', value: answersCount ?? 0, color: 'emerald' },
           { icon: CheckCircle2, label: 'Accepted', value: acceptedCount ?? 0, color: 'green' },
         ].map(({ icon: Icon, label, value, color }) => (
-          <Card key={label} className="border-slate-100 shadow-sm bg-white hover:shadow-md transition-shadow">
+          <Card key={label} className="border-border shadow-sm bg-card hover:shadow-md transition-all">
             <CardContent className="p-5 flex flex-col gap-3">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-${color}-50`}>
-                <Icon className={`w-5 h-5 text-${color}-500`} />
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-${color}-50 dark:bg-${color}-950/20`}>
+                <Icon className={`w-5 h-5 text-${color}-500 dark:text-${color}-400`} />
               </div>
               <div>
-                <p className="text-2xl font-bold text-slate-900">{value}</p>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">{label}</p>
+                <p className="text-2xl font-bold text-foreground">{value}</p>
+                <p className="text-xs text-muted-foreground font-medium mt-0.5">{label}</p>
               </div>
             </CardContent>
           </Card>
@@ -164,19 +164,19 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
 
         {/* Recent Questions */}
         <div className="space-y-3">
-          <h2 className="text-base font-bold text-slate-800 flex items-center gap-2 px-1">
+          <h2 className="text-base font-bold text-foreground flex items-center gap-2 px-1">
             <HelpCircle className="w-4 h-4 text-blue-500" /> Questions Asked
           </h2>
-          <Card className="border-slate-100 shadow-sm overflow-hidden min-h-[100px]">
+          <Card className="border-border shadow-sm overflow-hidden bg-card min-h-[100px]">
             {recentQuestions && recentQuestions.length > 0 ? (
-              <div className="divide-y divide-slate-50">
+              <div className="divide-y divide-border">
                 {recentQuestions.map(post => (
-                  <Link key={post.id} href={`/qa/${post.id}`} className="flex items-start gap-3 p-4 hover:bg-slate-50 transition-colors group">
+                  <Link key={post.id} href={`/qa/${post.id}`} className="flex items-start gap-3 p-4 hover:bg-muted/50 transition-colors group">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-slate-800 line-clamp-1 group-hover:text-indigo-600 transition-colors">{post.title}</p>
+                      <p className="text-sm font-semibold text-foreground line-clamp-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{post.title}</p>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[11px] font-medium text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">{post.subject}</span>
-                        <span className="text-[11px] text-slate-400">{timeAgo(post.created_at)}</span>
+                        <span className="text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40 px-2 py-0.5 rounded-full">{post.subject}</span>
+                        <span className="text-[11px] text-muted-foreground/60">{timeAgo(post.created_at)}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-1 text-xs text-slate-400 shrink-0 pt-0.5">
@@ -193,27 +193,27 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
 
         {/* Recent Answers */}
         <div className="space-y-3">
-          <h2 className="text-base font-bold text-slate-800 flex items-center gap-2 px-1">
+          <h2 className="text-base font-bold text-foreground flex items-center gap-2 px-1">
             <MessageCircle className="w-4 h-4 text-emerald-500" /> Recent Answers
           </h2>
-          <Card className="border-slate-100 shadow-sm overflow-hidden min-h-[100px]">
+          <Card className="border-border shadow-sm overflow-hidden bg-card min-h-[100px]">
             {recentAnswers && recentAnswers.length > 0 ? (
-              <div className="divide-y divide-slate-50">
+              <div className="divide-y divide-border">
                 {recentAnswers.map((ans: any) => (
-                  <Link key={ans.id} href={`/qa/${ans.post?.id}`} className="flex items-start gap-3 p-4 hover:bg-slate-50 transition-colors group">
+                  <Link key={ans.id} href={`/qa/${ans.post?.id}`} className="flex items-start gap-3 p-4 hover:bg-muted/50 transition-colors group">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-slate-800 line-clamp-1 group-hover:text-indigo-600 transition-colors">
+                      <p className="text-sm font-semibold text-foreground line-clamp-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                         {ans.post?.title || 'Question'}
                       </p>
-                      <p className="text-[11px] text-slate-400 line-clamp-1 mt-1">{ans.content?.slice(0, 60)}…</p>
+                      <p className="text-[11px] text-muted-foreground/60 line-clamp-1 mt-1">{ans.content?.slice(0, 60)}…</p>
                     </div>
                     <div className="flex flex-col items-end gap-1 shrink-0">
                       {ans.is_accepted && (
-                        <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <span className="text-[10px] font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/40 px-2 py-0.5 rounded-full flex items-center gap-1">
                           <CheckCircle2 className="w-3 h-3" /> Accepted
                         </span>
                       )}
-                      <span className="text-[11px] text-slate-400">{timeAgo(ans.created_at)}</span>
+                      <span className="text-[11px] text-muted-foreground/60">{timeAgo(ans.created_at)}</span>
                     </div>
                   </Link>
                 ))}

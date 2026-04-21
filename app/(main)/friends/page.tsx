@@ -47,17 +47,17 @@ export default async function FriendsPage() {
     <div className="max-w-5xl mx-auto space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             Connections
           </h1>
-          <p className="text-slate-500 mt-1">Find and study with your classmates.</p>
+          <p className="text-muted-foreground mt-1">Find and study with your classmates.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left: Search & Requests */}
         <div className="lg:col-span-1 space-y-6">
-          <Card className="border-slate-100 shadow-sm border-2">
+          <Card className="border-border shadow-sm border-2 bg-card">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center gap-2">
                 <UserPlus className="w-5 h-5 text-indigo-600" /> Find Students
@@ -70,9 +70,9 @@ export default async function FriendsPage() {
           </Card>
 
           {receivedRequests && receivedRequests.length > 0 && (
-             <Card className="border-indigo-100 bg-indigo-50/30">
+             <Card className="border-indigo-100 dark:border-indigo-900/50 bg-indigo-50/30 dark:bg-indigo-950/20">
                <CardHeader className="pb-3">
-                 <CardTitle className="text-sm font-bold flex items-center gap-2 text-indigo-900 uppercase tracking-wider">
+                 <CardTitle className="text-sm font-bold flex items-center gap-2 text-indigo-900 dark:text-indigo-400 uppercase tracking-wider">
                    <Clock className="w-4 h-4" /> Received Requests
                  </CardTitle>
                </CardHeader>
@@ -86,16 +86,16 @@ export default async function FriendsPage() {
         {/* Right: Friends Grid */}
         <div className="lg:col-span-2 space-y-4">
           <Tabs defaultValue="all" className="w-full">
-            <TabsList className="bg-slate-100 p-1 rounded-xl">
-              <TabsTrigger value="all" className="rounded-lg px-6">My Friends ({processedFriends.length})</TabsTrigger>
-              <TabsTrigger value="online" className="rounded-lg px-6">Activity</TabsTrigger>
+            <TabsList className="bg-muted p-1 rounded-xl">
+              <TabsTrigger value="all" className="rounded-lg px-6 data-[state=active]:bg-card data-[state=active]:text-foreground">My Friends ({processedFriends.length})</TabsTrigger>
+              <TabsTrigger value="online" className="rounded-lg px-6 data-[state=active]:bg-card data-[state=active]:text-foreground">Activity</TabsTrigger>
             </TabsList>
             
             <TabsContent value="all" className="mt-6">
               {processedFriends.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {processedFriends.map((friend) => (
-                    <Card key={friend.id} className="hover:border-indigo-200 transition-colors group cursor-pointer overflow-hidden border-2 border-slate-100">
+                    <Card key={friend.id} className="hover:border-indigo-200 dark:hover:border-indigo-900/50 transition-colors group cursor-pointer overflow-hidden border-2 border-border bg-card">
                       <CardContent className="p-4 flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div className="relative">
@@ -107,12 +107,12 @@ export default async function FriendsPage() {
                             <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full" />
                           </div>
                           <div>
-                            <h4 className="font-bold text-slate-900 leading-tight">{friend.display_name}</h4>
-                            <p className="text-xs text-slate-500">@{friend.username}</p>
+                            <h4 className="font-bold text-foreground leading-tight">{friend.display_name}</h4>
+                            <p className="text-xs text-muted-foreground">@{friend.username}</p>
                           </div>
                         </div>
                         <Link href={`/messages/${friend.id}`}>
-                           <Button size="icon" variant="ghost" className="rounded-full text-slate-400 group-hover:text-indigo-600 transition-colors">
+                           <Button size="icon" variant="ghost" className="rounded-full text-muted-foreground group-hover:text-indigo-600 transition-colors">
                             <MessageCircle className="w-5 h-5" />
                           </Button>
                         </Link>
@@ -121,12 +121,12 @@ export default async function FriendsPage() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-20 bg-slate-50/50 rounded-3xl border-2 border-dashed border-slate-100">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-                    <Users className="w-8 h-8 text-slate-300" />
+                <div className="text-center py-20 bg-muted/30 rounded-3xl border-2 border-dashed border-border transition-colors">
+                  <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <Users className="w-8 h-8 text-muted-foreground/40" />
                   </div>
-                  <h3 className="text-slate-900 font-bold">No connections yet</h3>
-                  <p className="text-slate-500 text-sm max-w-xs mx-auto mt-1">
+                  <h3 className="text-foreground font-bold">No connections yet</h3>
+                  <p className="text-muted-foreground text-sm max-w-xs mx-auto mt-1">
                     Start searching for classmates on the left to build your study network.
                   </p>
                 </div>
@@ -134,7 +134,7 @@ export default async function FriendsPage() {
             </TabsContent>
             
             <TabsContent value="online" className="mt-6">
-               <div className="bg-slate-50/50 rounded-3xl p-12 text-center text-slate-500 italic">
+               <div className="bg-muted/30 rounded-3xl p-12 text-center text-muted-foreground italic border-2 border-dashed border-border transition-colors">
                   Social feed coming soon...
                </div>
             </TabsContent>

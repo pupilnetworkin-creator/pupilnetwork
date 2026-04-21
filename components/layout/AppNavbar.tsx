@@ -77,7 +77,7 @@ export default function AppNavbar() {
     href === '/dashboard' ? pathname === '/dashboard' : pathname.startsWith(href)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
 
@@ -86,7 +86,7 @@ export default function AppNavbar() {
             <div className="w-9 h-9 bg-indigo-600 dark:bg-indigo-500 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-200 shadow-lg shadow-indigo-100 dark:shadow-none">
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-slate-900 dark:text-white hidden lg:block tracking-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <span className="text-xl font-bold text-foreground hidden lg:block tracking-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               PupilNetwork
             </span>
           </Link>
@@ -103,10 +103,10 @@ export default function AppNavbar() {
                   className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
                     active
                       ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-400'
-                      : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
+                      : 'text-muted-foreground hover:bg-muted dark:hover:bg-accent hover:text-foreground'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 translate-y-[0.5px] ${active ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500'}`} />
+                  <Icon className={`w-4 h-4 translate-y-[0.5px] ${active ? 'text-indigo-600 dark:text-indigo-400' : 'text-muted-foreground/60'}`} />
                   {link.label}
                 </Link>
               )
@@ -124,8 +124,8 @@ export default function AppNavbar() {
 
             {user && (
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center gap-2 rounded-full pl-1 pr-3 py-1 hover:bg-slate-100 transition-colors outline-none cursor-pointer">
-                  <Avatar className="w-8 h-8 border-2 border-white dark:border-slate-800 shadow-sm shrink-0">
+                <DropdownMenuTrigger className="flex items-center gap-2 rounded-full pl-1 pr-3 py-1 hover:bg-muted transition-colors outline-none cursor-pointer">
+                  <Avatar className="w-8 h-8 border-2 border-background shadow-sm shrink-0">
                     <AvatarFallback
                       className="font-sans antialiased text-[11px] font-bold text-white shadow-inner"
                       style={{ backgroundColor: profile?.avatar_color || '#6366f1' }}
@@ -133,14 +133,14 @@ export default function AppNavbar() {
                       {getInitials(profile?.display_name || user.username || 'U')}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="text-sm font-bold text-slate-800 dark:text-slate-100 hidden sm:block font-sans tracking-tight leading-none translate-y-[0.5px]">
+                  <span className="text-sm font-bold text-foreground hidden sm:block font-sans tracking-tight leading-none translate-y-[0.5px]">
                     {profile?.display_name?.split(' ')[0]}
                   </span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-52">
-                  <div className="px-3 py-2 border-b border-slate-100 mb-1">
-                    <p className="text-sm font-semibold text-slate-900 truncate">{profile?.display_name}</p>
-                    <p className="text-xs text-slate-400 truncate">@{profile?.username}</p>
+                  <div className="px-3 py-2 border-b border-border mb-1">
+                    <p className="text-sm font-semibold text-foreground truncate">{profile?.display_name}</p>
+                    <p className="text-xs text-muted-foreground truncate">@{profile?.username}</p>
                   </div>
                   <DropdownMenuItem onClick={() => router.push(`/profile/${profile?.username}`)} className="gap-2 cursor-pointer">
                     <User className="w-4 h-4" /> My Profile
@@ -148,8 +148,8 @@ export default function AppNavbar() {
                   <DropdownMenuItem onClick={() => router.push('/premium')} className="gap-2 cursor-pointer">
                     <Crown className="w-4 h-4 text-amber-500" /> Premium
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="gap-2 text-red-600 cursor-pointer focus:text-red-600">
+                  <DropdownMenuSeparator className="bg-border" />
+                  <DropdownMenuItem onClick={handleLogout} className="gap-2 text-red-600 cursor-pointer focus:text-red-600 dark:text-red-400">
                     <LogOut className="w-4 h-4" /> Sign out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -158,17 +158,17 @@ export default function AppNavbar() {
 
             {/* Mobile hamburger */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-              <SheetTrigger className="md:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors">
-                <Menu className="w-5 h-5 text-slate-700" />
+              <SheetTrigger className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors">
+                <Menu className="w-5 h-5 text-muted-foreground" />
               </SheetTrigger>
               <SheetContent side="left" className="w-72 p-0">
                 <div className="flex flex-col h-full">
                   {/* Mobile header */}
-                  <div className="flex items-center gap-2 px-5 py-4 border-b border-slate-100">
+                  <div className="flex items-center gap-2 px-5 py-4 border-b border-border">
                     <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
                       <GraduationCap className="w-5 h-5 text-white" />
                     </div>
-                    <span className="font-bold text-slate-900 text-lg" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>PupilNetwork</span>
+                    <span className="font-bold text-foreground text-lg" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>PupilNetwork</span>
                   </div>
 
                   {/* Mobile nav links */}

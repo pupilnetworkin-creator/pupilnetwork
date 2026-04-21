@@ -154,26 +154,26 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
   }
 
   return (
-    <div className="flex flex-col h-full bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-xl shadow-slate-200/50">
+    <div className="flex flex-col h-full bg-card rounded-2xl border border-border overflow-hidden shadow-xl shadow-slate-200/10 dark:shadow-none transition-colors">
       {/* Header */}
-      <div className="p-4 border-b border-slate-50 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-10">
+      <div className="p-4 border-b border-border flex items-center justify-between bg-background/80 backdrop-blur-md sticky top-0 z-10 transition-colors">
         <div className="flex items-center gap-3">
           <Link href="/friends">
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-slate-900 rounded-full md:hidden">
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground rounded-full md:hidden">
               <ArrowLeft className="w-5 h-5" />
             </Button>
           </Link>
           <div className="relative">
-            <Avatar className="w-10 h-10 border-2 border-white shadow-sm">
+            <Avatar className="w-10 h-10 border-2 border-background shadow-sm">
               <AvatarFallback style={{ backgroundColor: friendProfile.avatar_color, color: 'white' }}>
                 {getInitials(friendProfile.display_name)}
               </AvatarFallback>
             </Avatar>
-            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full" />
+            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-background rounded-full" />
           </div>
           <div>
-            <h3 className="font-bold text-slate-900 text-sm leading-none mb-1">{friendProfile.display_name}</h3>
-            <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Active Now</p>
+            <h3 className="font-bold text-foreground text-sm leading-none mb-1">{friendProfile.display_name}</h3>
+            <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Active Now</p>
           </div>
         </div>
       </div>
@@ -185,11 +185,11 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
              <Loader2 className="w-6 h-6 animate-spin text-indigo-300" />
           </div>
         ) : messages.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-slate-400 text-sm py-10">
-            <div className="w-20 h-20 bg-indigo-50 rounded-3xl flex items-center justify-center mb-4 rotate-3 group">
+          <div className="h-full flex flex-col items-center justify-center text-muted-foreground text-sm py-10">
+            <div className="w-20 h-20 bg-muted rounded-3xl flex items-center justify-center mb-4 rotate-3 group">
               <span className="text-3xl group-hover:scale-125 transition-transform">👋</span>
             </div>
-            <p className="font-bold text-slate-900 mb-1">Start a conversation</p>
+            <p className="font-bold text-foreground mb-1">Start a conversation</p>
             <p>Send a message to {friendProfile.display_name.split(' ')[0]}</p>
           </div>
         ) : (
@@ -201,15 +201,15 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
               <div key={msg.id} className={`flex gap-3 ${isMe ? 'flex-row-reverse' : 'flex-row'}`}>
                 <div className={`flex flex-col max-w-[80%] ${isMe ? 'items-end' : 'items-start'}`}>
                   <div 
-                    className={`px-4 py-2.5 rounded-2xl text-[15px] leading-relaxed break-words shadow-sm ${
+                    className={`px-4 py-2.5 rounded-2xl text-[15px] leading-relaxed break-words shadow-sm transition-colors ${
                       isMe 
                         ? 'bg-indigo-600 text-white rounded-tr-none' 
-                        : 'bg-slate-100 text-slate-800 rounded-tl-none'
+                        : 'bg-muted text-foreground rounded-tl-none'
                     }`}
                   >
                     {msg.content}
                   </div>
-                  <span className="text-[10px] text-slate-400 mt-1 px-1">
+                  <span className="text-[10px] text-muted-foreground mt-1 px-1">
                     {new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
@@ -221,13 +221,13 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
       </div>
 
       {/* Input */}
-      <div className="p-4 bg-white border-t border-slate-50">
+      <div className="p-4 bg-muted/30 border-t border-border transition-colors">
         <form onSubmit={handleSendMessage} className="flex gap-2 relative group">
           <Input
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder={`Message ${friendProfile.display_name.split(' ')[0]}...`}
-            className="flex-1 rounded-2xl pl-4 pr-12 bg-slate-50 border-none focus-visible:ring-2 focus-visible:ring-indigo-500/20 shadow-inner transition-all"
+            className="flex-1 rounded-2xl pl-4 pr-12 bg-background border-none focus-visible:ring-2 focus-visible:ring-indigo-500/20 shadow-inner transition-all text-foreground"
             disabled={sending}
           />
           <Button 
