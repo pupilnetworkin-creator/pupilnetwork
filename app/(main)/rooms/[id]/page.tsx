@@ -87,6 +87,7 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
           </div>
         )}
       </div>
+    </div>
 
       {/* Main Workspace Split */}
       <div className="flex-1 flex flex-col lg:flex-row gap-4 p-4 min-h-0 overflow-hidden bg-slate-50/50 relative">
