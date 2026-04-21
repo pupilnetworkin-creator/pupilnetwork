@@ -79,15 +79,14 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
 
         <div className="flex items-center gap-4">
           <RoomTimer expiresAt={room.expires_at} />
-        
-        {room.description && (
-          <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-lg max-w-sm truncate border border-border">
-            <Info className="w-4 h-4 shrink-0 text-indigo-400" />
-            <span className="truncate">{room.description}</span>
-          </div>
-        )}
+          {room.description && (
+            <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-lg max-w-sm truncate border border-border">
+              <Info className="w-4 h-4 shrink-0 text-indigo-400" />
+              <span className="truncate">{room.description}</span>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
 
       {/* Main Workspace Split */}
       <div className="flex-1 flex flex-col lg:flex-row gap-4 p-4 min-h-0 overflow-hidden bg-background relative transition-colors">
@@ -124,7 +123,6 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
             Video powered by Jitsi Meet. Completely secure and encrypted.
           </div>
         </div>
-
       </div>
     </div>
   )
