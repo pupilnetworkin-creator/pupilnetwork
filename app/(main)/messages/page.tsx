@@ -22,8 +22,10 @@ export default async function MessagesInboxPage() {
     `)
     .or(`and(sender_id.eq.${user.id},status.eq.accepted),and(receiver_id.eq.${user.id},status.eq.accepted)`)
 
-  const conversationList = friends?.map(f => {
-    return f.sender.id === user.id ? f.receiver : f.sender
+  const conversationList = friends?.map((f: any) => {
+    const sender = Array.isArray(f.sender) ? f.sender[0] : f.sender
+    const receiver = Array.isArray(f.receiver) ? f.receiver[0] : f.receiver
+    return sender.id === user.id ? receiver : sender
   }) || []
 
   return (

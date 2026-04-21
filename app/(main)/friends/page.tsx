@@ -38,8 +38,10 @@ export default async function FriendsPage() {
     .eq('status', 'pending')
 
   // Process friends list (getting the "other" person)
-  const processedFriends = friends?.map(f => {
-    const friend = f.sender.id === user.id ? f.receiver : f.sender
+  const processedFriends = friends?.map((f: any) => {
+    const sender = Array.isArray(f.sender) ? f.sender[0] : f.sender
+    const receiver = Array.isArray(f.receiver) ? f.receiver[0] : f.receiver
+    const friend = sender.id === user.id ? receiver : sender
     return { ...friend, friendshipId: f.id }
   }) || []
 
