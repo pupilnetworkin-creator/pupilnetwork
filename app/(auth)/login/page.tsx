@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
 import { Eye, EyeOff, Loader2, GraduationCap } from 'lucide-react'
+import { getURL } from '@/lib/url'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -49,7 +50,7 @@ export default function LoginPage() {
     setGoogleLoading(true)
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
+      options: { redirectTo: `${getURL()}/auth/callback` },
     })
     if (error) {
       toast.error(error.message)

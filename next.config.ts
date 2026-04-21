@@ -7,9 +7,6 @@ const nextConfig: any = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  experimental: {
-    allowedDevOrigins: ['10.1.5.206', 'localhost:3000']
   }
 };
 
