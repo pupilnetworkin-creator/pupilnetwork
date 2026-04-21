@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'PupilNetwork — Study Smarter, Together',
     description: 'Join live study rooms, ask questions, get AI help — all in one place.',
-    url: 'https://pupilnetwork.is-a.dev',
+    url: 'https://pupilnetwork-seven.vercel.app',
     siteName: 'PupilNetwork',
     locale: 'en_IN',
     type: 'website',
