@@ -41,10 +41,15 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
     redirect('/rooms')
   }
 
-  // Increment member count (basic naive approach for now)
-  // In a real app we'd use presence, but this works for demo
+  // Increment member count and award points for joining
   try {
-    await supabase.rpc('increment_room_members', { row_id: roomId })
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      await Promise.all([
+        supabase.rpc('increment_room_members', { row_id: roomId }),
+        supabase.rpc('increment_user_points', { user_id: user.id, amount: 5 })
+      ])
+    }
   } catch {
     // If RPC fails, ignore silently
   }

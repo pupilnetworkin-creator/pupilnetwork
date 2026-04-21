@@ -80,7 +80,14 @@ export default function QABoardPage() {
       return
     }
 
-    toast.success('Question posted successfully!')
+    // Award +10 points for asking a question
+    try {
+      await supabase.rpc('increment_user_points', { user_id: user.id, amount: 10 })
+    } catch {
+      // non-critical
+    }
+
+    toast.success('Question posted successfully! +10 points earned 🎉')
     setCreateOpen(false)
     setNewPost({ title: '', subject: '', content: '' })
     router.push(`/qa/${data.id}`)

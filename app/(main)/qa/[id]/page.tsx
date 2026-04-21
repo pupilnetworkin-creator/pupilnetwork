@@ -129,14 +129,14 @@ export default function QuestionDetailPage() {
       await supabase.from('qa_posts').update({ answer_count: post.answer_count + 1 }).eq('id', post.id)
     }
 
-    // Award +2 points for posting an answer
+    // Award +15 points for posting an answer
     try {
-      await supabase.rpc('increment_user_points', { user_id: user.id, amount: 2 })
+      await supabase.rpc('increment_user_points', { user_id: user.id, amount: 15 })
     } catch {
       // non-critical, ignore
     }
 
-    toast.success('Answer posted! +2 points earned 🎉')
+    toast.success('Answer posted! +15 points earned 🎉')
     setAnswers(prev => [...prev, data])
     setNewAnswer('')
     setSubmitting(false)
@@ -154,13 +154,13 @@ export default function QuestionDetailPage() {
     // Mark post solved
     await supabase.from('qa_posts').update({ is_solved: true }).eq('id', post.id)
 
-    // Give 10 points to answer author
+    // Give 50 points to answer author
     const targetAnswer = answers.find(a => a.id === answerId)
     if (targetAnswer?.author_id) {
-      try { await supabase.rpc('increment_user_points', { user_id: targetAnswer.author_id, amount: 10 }) } catch {}
+      try { await supabase.rpc('increment_user_points', { user_id: targetAnswer.author_id, amount: 50 }) } catch {}
     }
     
-    toast.success('Answer accepted! 10 points awarded to the author.')
+    toast.success('Answer accepted! 50 points awarded to the author. 🏆')
   }
 
   if (loading) {
