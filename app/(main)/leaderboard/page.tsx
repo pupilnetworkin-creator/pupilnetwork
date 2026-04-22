@@ -131,7 +131,7 @@ export default function LeaderboardPage() {
       )}
 
       {/* Main Ranking List - Modern & Glassy */}
-      <div className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-[2.5rem] shadow-2xl shadow-slate-200/10 dark:shadow-none overflow-hidden">
+      <div className="glass-card overflow-hidden border-none shadow-2xl shadow-indigo-500/5">
         <div className="bg-muted/30 border-b border-border/50 px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
@@ -141,7 +141,7 @@ export default function LeaderboardPage() {
           </div>
 
           {/* Period Switcher - Glass Style */}
-          <div className="flex items-center bg-background/50 border border-border/50 rounded-2xl p-1 gap-1">
+          <div className="flex items-center glass border-none rounded-2xl p-1 gap-1">
             {TABS.map((tab) => (
               <button
                 key={tab.value}

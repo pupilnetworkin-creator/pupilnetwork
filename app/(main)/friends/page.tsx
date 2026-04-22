@@ -63,7 +63,7 @@ export default async function FriendsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {/* Left Column: Social Actions */}
         <div className="lg:col-span-4 space-y-8">
-          <Card className="border-none bg-card/50 backdrop-blur-xl shadow-2xl shadow-indigo-500/5 rounded-[2.5rem] overflow-hidden border border-white/10">
+          <Card className="glass-card overflow-hidden border-none shadow-2xl shadow-indigo-500/5">
             <div className="bg-gradient-to-br from-indigo-600 to-indigo-900 p-6 text-white">
               <CardTitle className="text-xl font-black flex items-center gap-3 tracking-tight">
                 <UserPlus className="w-5 h-5 text-indigo-200" /> Find Students
@@ -92,7 +92,7 @@ export default async function FriendsPage() {
         {/* Right Column: Friends Grid */}
         <div className="lg:col-span-8 space-y-6">
           <Tabs defaultValue="all" className="w-full">
-            <div className="flex items-center justify-between mb-8 bg-muted/50 p-1.5 rounded-2xl border border-border/50">
+            <div className="flex items-center justify-between mb-8 glass p-1.5 rounded-2xl border-none">
               <TabsList className="bg-transparent gap-2 p-0">
                 <TabsTrigger value="all" className="rounded-xl px-8 py-3 font-black text-xs uppercase tracking-widest data-[state=active]:bg-background data-[state=active]:text-indigo-600 data-[state=active]:shadow-lg shadow-indigo-500/10">
                   Friends ({processedFriends.length})
@@ -107,7 +107,7 @@ export default async function FriendsPage() {
               {processedFriends.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {processedFriends.map((friend) => (
-                    <Card key={friend.id} className="hover:border-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/5 transition-all group cursor-pointer border border-border/50 bg-card/40 backdrop-blur-sm rounded-[2rem] overflow-hidden p-1">
+                    <Card key={friend.id} className="hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-1 transition-all group cursor-pointer glass-card border-none overflow-hidden p-1">
                       <CardContent className="p-5 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                           <div className="relative">
