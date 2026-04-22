@@ -6,6 +6,7 @@ export function getURL() {
   let url =
     process?.env?.NEXT_PUBLIC_SITE_URL ?? // Defined in Vercel environment variables
     process?.env?.NEXT_PUBLIC_VERCEL_URL ?? // Automatically set by Vercel for previews
+    process?.env?.VERCEL_URL ?? // Added as a safe fallback for production
     'http://localhost:3000'
 
   // Make sure to include `https://` when not localhost
