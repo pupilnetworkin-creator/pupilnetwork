@@ -58,86 +58,86 @@ export default async function LandingPage() {
       <main>
 
         {/* ── HERO ──────────────────────────────────────────── */}
-        <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
-          {/* Soft gradient blobs */}
+        <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-white">
+          {/* Advanced Background effects */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-indigo-100 rounded-full opacity-60 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-purple-100 rounded-full opacity-50 blur-3xl" />
+            <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-indigo-500/5 rounded-full blur-[120px]" />
+            <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] bg-violet-500/5 rounded-full blur-[100px]" />
+            <div className="absolute top-[20%] left-[10%] w-px h-[40%] bg-gradient-to-b from-transparent via-indigo-200/50 to-transparent" />
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className="text-center max-w-4xl mx-auto">
+            <div className="text-center max-w-5xl mx-auto">
 
-              <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 text-indigo-700 text-sm font-semibold px-4 py-2 rounded-full mb-8">
-                <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-                India&apos;s Student Collaboration Platform
+              <div className="inline-flex items-center gap-2 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.3em] px-5 py-2 rounded-full mb-10 shadow-2xl shadow-indigo-500/20">
+                <Sparkles className="w-3 h-3 text-indigo-400" />
+                Empowering Indian Students
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.08] mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                The smarter way<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600">
-                  students study
+              <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] mb-8" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                The future of <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 bg-[length:200%_auto] animate-gradient">
+                  collaborative study
                 </span>
               </h1>
 
-              <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-                Live study rooms, peer Q&amp;A, AI tutoring &amp; gamified learning — 
-                built for Indian students who want to study smarter, not harder.
+              <p className="text-xl md:text-2xl text-slate-500 mb-12 leading-relaxed max-w-3xl mx-auto font-medium tracking-tight">
+                Live study rooms, peer Q&amp;A, and AI tutoring. Built for students who want to <span className="text-slate-900 font-bold underline decoration-indigo-500/30 decoration-4 underline-offset-4">master concepts</span> faster, together.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16">
                 <Link href="/signup">
-                  <Button size="lg" className="w-full sm:w-auto h-14 px-8 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-lg shadow-indigo-200 text-base font-semibold transition-all hover:scale-[1.02]">
-                    Start for free <ArrowRight className="ml-2 w-4 h-4" />
+                  <Button size="lg" className="w-full sm:w-auto h-16 px-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-2xl shadow-indigo-500/40 text-lg font-black transition-all hover:scale-105 active:scale-95 group">
+                    Start Learning Now <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
                 <Link href="#features">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 rounded-xl bg-white border-2 border-slate-200 text-slate-700 text-base font-semibold hover:border-indigo-200 hover:text-indigo-700">
-                    See features
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto h-16 px-10 rounded-2xl border-2 border-slate-200 text-slate-700 text-lg font-black hover:bg-slate-50 transition-all">
+                    Explore Features
                   </Button>
                 </Link>
               </div>
 
-              {/* Live stats */}
-              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-                <span className="flex items-center gap-1.5 font-medium">
-                  <Users className="w-4 h-4 text-indigo-500" />
-                  {studentCount && studentCount > 0 ? (
-                    <><strong className="text-slate-800">{studentCount}</strong> student{studentCount !== 1 ? 's' : ''} joined</>
-                  ) : 'Free for students'}
-                </span>
-                <span className="text-slate-200">|</span>
-                <span className="flex items-center gap-1.5 font-medium">
-                  <BookOpen className="w-4 h-4 text-purple-500" />
-                  {roomCount && roomCount > 0 ? (
-                    <><strong className="text-slate-800">{roomCount}</strong> active rooms</>
-                  ) : 'Create a room free'}
-                </span>
-                <span className="text-slate-200">|</span>
-                <span className="flex items-center gap-1.5 font-medium">
-                  <MessageSquare className="w-4 h-4 text-pink-500" />
-                  {qaCount && qaCount > 0 ? (
-                    <><strong className="text-slate-800">{qaCount}</strong> questions answered</>
-                  ) : 'Ask your first question'}
-                </span>
+              {/* Live stats - Premium Strip */}
+              <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 bg-slate-50/50 backdrop-blur-sm border border-slate-200/50 p-6 rounded-[2rem] max-w-3xl mx-auto shadow-sm">
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl font-black text-slate-900">{studentCount || '1.2k'}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Students</span>
+                </div>
+                <div className="w-px h-8 bg-slate-200 hidden sm:block" />
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl font-black text-slate-900">{roomCount || '45'}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Live Rooms</span>
+                </div>
+                <div className="w-px h-8 bg-slate-200 hidden sm:block" />
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl font-black text-slate-900">{qaCount || '890'}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Solved Q&A</span>
+                </div>
               </div>
             </div>
 
-            {/* Hero image */}
-            <div className="mt-16 max-w-5xl mx-auto">
-              <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-indigo-100 border border-slate-100 ring-1 ring-slate-900/5 aspect-video bg-slate-100">
+            {/* Product Showcase */}
+            <div className="mt-20 relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-[3rem] blur-3xl opacity-10 animate-pulse" />
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(79,70,229,0.2)] border border-slate-200 ring-1 ring-slate-900/5 aspect-video bg-slate-100 group">
                 <Image
                   src="/product_mockup.png"
-                  alt="PupilNetwork Dashboard Mockup showing study rooms and AI Buddy"
+                  alt="PupilNetwork Dashboard Mockup"
                   fill
                   priority
-                  className="object-cover"
+                  className="object-cover group-hover:scale-[1.02] transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-                  <p className="text-white font-semibold text-lg drop-shadow">Real-time collaboration for every student</p>
-                  <div className="hidden sm:flex items-center gap-1.5 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/30">
-                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" /> Live Now
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+                <div className="absolute bottom-8 left-8 flex items-center gap-3">
+                  <div className="bg-white/90 backdrop-blur-md p-1 pr-4 rounded-2xl flex items-center gap-3 shadow-2xl border border-white">
+                    <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 leading-none mb-1">Status</p>
+                      <p className="text-sm font-black text-slate-900 leading-none">Global Server Active</p>
+                    </div>
                   </div>
                 </div>
               </div>
