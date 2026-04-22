@@ -173,7 +173,7 @@ export default function QABoardPage() {
       </div>
 
       {/* Filters - Glassmorphism */}
-      <div className="bg-card/50 backdrop-blur-xl p-4 rounded-[2.5rem] border border-border/50 shadow-xl shadow-slate-200/5 space-y-4">
+      <div className="glass-card p-4 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-indigo-500/5 space-y-4">
         <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
           <div className="flex items-center gap-2 w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0 no-scrollbar hide-scrollbar px-2">
             <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/50 mr-2 shrink-0">Subject:</span>

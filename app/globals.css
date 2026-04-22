@@ -138,42 +138,42 @@
     font-family: var(--font-sans);
   }
 
-@layer utilities {
-  .glass {
-    background-color: rgba(255, 255, 255, 0.45) !important;
-    backdrop-filter: blur(25px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-  }
+/* Standard CSS classes to ensure maximum visibility and no stripping */
+.glass {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
 
-  .dark .glass {
-    background-color: rgba(15, 23, 42, 0.45) !important;
-    backdrop-filter: blur(25px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  }
+.dark .glass {
+  background: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
 
-  .glass-card {
-    background-color: rgba(255, 255, 255, 0.6) !important;
-    backdrop-filter: blur(30px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    box-shadow: 0 10px 40px -10px rgba(31, 38, 135, 0.15);
-  }
+.glass-card {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(30px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.05) !important;
+}
 
-  .dark .glass-card {
-    background-color: rgba(30, 41, 59, 0.6) !important;
-    backdrop-filter: blur(30px) saturate(200%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  }
+.dark .glass-card {
+  background: rgba(30, 41, 59, 0.6) !important;
+  backdrop-filter: blur(30px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
 
-  .animate-gradient {
-    background-size: 200% auto;
-    animation: gradient 8s linear infinite;
-  }
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 8s linear infinite;
+}
 
-  @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

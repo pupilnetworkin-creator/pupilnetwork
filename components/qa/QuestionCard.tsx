@@ -53,7 +53,7 @@ export function QuestionCard({ post, currentUserId, onDeleted }: QuestionCardPro
   return (
     <div className="relative group">
       <Link href={`/qa/${post.id}`}>
-        <Card className="hover:shadow-md transition-shadow border-slate-200">
+        <Card className="glass-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-none overflow-hidden">
           <CardContent className="p-5">
             <div className="flex gap-4">
               {/* Left: Upvotes */}

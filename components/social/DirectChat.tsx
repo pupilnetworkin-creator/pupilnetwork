@@ -162,9 +162,9 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
   }
 
   return (
-    <div className="flex flex-col h-full bg-card rounded-2xl border border-border overflow-hidden shadow-xl shadow-slate-200/10 dark:shadow-none transition-colors">
+    <div className="flex flex-col h-full glass-card rounded-2xl overflow-hidden border-none transition-colors">
       {/* Header */}
-      <div className="p-4 border-b border-border flex items-center justify-between bg-background/80 backdrop-blur-md sticky top-0 z-10 transition-colors">
+      <div className="p-4 border-b border-white/10 flex items-center justify-between glass sticky top-0 z-10 transition-colors">
         <div className="flex items-center gap-3">
           <Link href="/friends">
             <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground rounded-full md:hidden">
@@ -209,10 +209,10 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
               <div key={msg.id} className={`flex gap-3 ${isMe ? 'flex-row-reverse' : 'flex-row'}`}>
                 <div className={`flex flex-col max-w-[80%] ${isMe ? 'items-end' : 'items-start'}`}>
                   <div 
-                    className={`px-4 py-2.5 rounded-2xl text-[15px] leading-relaxed break-words shadow-sm transition-colors ${
+                    className={`px-4 py-2.5 rounded-2xl text-[15px] font-medium leading-relaxed break-words shadow-sm transition-colors ${
                       isMe 
                         ? 'bg-indigo-600 text-white rounded-tr-none' 
-                        : 'bg-muted text-foreground rounded-tl-none'
+                        : 'bg-white/80 dark:bg-slate-800 text-foreground rounded-tl-none border border-white/20'
                     }`}
                   >
                     {msg.content}
@@ -229,7 +229,7 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
       </div>
 
       {/* Input */}
-      <div className="p-4 bg-muted/30 border-t border-border transition-colors">
+      <div className="p-4 bg-white/40 dark:bg-slate-900/40 backdrop-blur-sm border-t border-white/10 transition-colors">
         <form onSubmit={handleSendMessage} className="flex gap-2 relative group">
           <Input
             value={newMessage}
