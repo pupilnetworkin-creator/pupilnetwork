@@ -91,11 +91,19 @@ export function DirectChat({ friendId, currentUserId, friendProfile }: DirectCha
           event: 'INSERT',
           schema: 'public',
           table: 'direct_messages',
-          filter: `or(and(sender_id.eq.${currentUserId},receiver_id.eq.${friendId}),and(sender_id.eq.${friendId},receiver_id.eq.${currentUserId}))`
         },
         async (payload) => {
-          if (payload.new.sender_id === currentUserId && messages.some(m => m.id === payload.new.id)) return
+          // Manually filter: only process if the message belongs to THIS 1-to-1 conversation
+          const isRelevant = 
+            (payload.new.sender_id === currentUserId && payload.new.receiver_id === friendId) ||
+            (payload.new.sender_id === friendId && payload.new.receiver_id === currentUserId);
+          
+          if (!isRelevant) return;
 
+          // Prevent duplicates if we already added it optimistically
+          if (messages.some(m => m.id === payload.new.id)) return
+
+          // Fetch the profile for the new message
           const { data: profile } = await supabase
             .from('profiles')
             .select('display_name, avatar_color, username')
