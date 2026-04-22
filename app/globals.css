@@ -137,6 +137,7 @@
   html {
     font-family: var(--font-sans);
   }
+}
 
 /* Standard CSS classes to ensure maximum visibility and no stripping */
 .glass {
