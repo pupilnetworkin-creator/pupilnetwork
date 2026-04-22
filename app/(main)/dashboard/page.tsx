@@ -132,7 +132,7 @@ export default async function DashboardPage() {
             indigo: 'bg-indigo-500/10 text-indigo-500 border-indigo-500/20',
           }
           return (
-            <Card key={i} className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-indigo-500/30 transition-all hover:shadow-xl hover:shadow-indigo-500/5 group relative overflow-hidden">
+            <Card key={i} className="glass-card hover:border-indigo-500/30 transition-all hover:shadow-xl hover:shadow-indigo-500/5 group relative overflow-hidden">
               <div className={`absolute top-0 right-0 w-20 h-20 -mr-8 -mt-8 rounded-full opacity-0 group-hover:opacity-10 transition-opacity bg-${stat.color}-500`} />
               <CardContent className="p-6 flex flex-col items-center justify-center text-center">
                 <div className={`w-12 h-12 ${colors[stat.color]} border rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
@@ -190,7 +190,7 @@ export default async function DashboardPage() {
             </Link>
           </div>
 
-          <Card className="bg-card/50 backdrop-blur-sm border-border/50 rounded-3xl overflow-hidden">
+          <Card className="glass-card rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               {recentQA && recentQA.length > 0 ? (
                 <div className="divide-y divide-border">
