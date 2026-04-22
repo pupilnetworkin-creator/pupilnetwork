@@ -169,8 +169,8 @@ export default function AppNavbar() {
               <SheetTrigger className="md:hidden p-2.5 bg-muted rounded-2xl border border-border/50 hover:bg-muted/80 transition-colors">
                 <Menu className="w-5 h-5 text-foreground" />
               </SheetTrigger>
-              <SheetContent side="left" className="w-72 p-0 border-r border-border/50 shadow-2xl">
-                <div className="flex flex-col h-full bg-background">
+              <SheetContent side="left" className="w-72 p-0 border-r border-border/50 shadow-2xl glass !bg-transparent">
+                <div className="flex flex-col h-full bg-transparent">
                   {/* Mobile header */}
                   <div className="flex items-center gap-3 px-6 py-8 border-b border-border/50">
                     <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
@@ -204,7 +204,7 @@ export default function AppNavbar() {
                   </nav>
 
                   {/* Mobile footer */}
-                  <div className="mt-auto border-t border-border/50 p-6 space-y-4 bg-muted/20">
+                  <div className="mt-auto border-t border-border/50 p-6 space-y-4 bg-transparent">
                     {profile?.is_premium && (
                       <div className="flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-600 text-[11px] font-black uppercase tracking-widest px-4 py-2.5 rounded-2xl w-full justify-center">
                         <Crown className="w-4 h-4" /> Premium Member
