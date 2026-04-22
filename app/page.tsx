@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -11,6 +12,8 @@ import {
 import { createClient } from '@/lib/supabase/server'
 import { getInitials } from '@/lib/utils'
 
+export const revalidate = 300 // Cache for 5 minutes
+
 export const metadata = {
   title: 'PupilNetwork — Study Smarter, Together',
   description: 'The student collaboration platform. Live study rooms, peer Q&A, AI tutoring, and gamified learning — all in one place. Built for students in India.',
@@ -19,24 +22,32 @@ export const metadata = {
 export default async function LandingPage() {
   const supabase = await createClient()
 
-  const { data: topUsers } = await supabase
-    .from('profiles')
-    .select('display_name, points')
-    .order('points', { ascending: false })
-    .limit(3)
+  // Fetch all stats in parallel
+  const [
+    { data: topUsers },
+    { count: studentCount },
+    { count: roomCount },
+    { count: qaCount }
+  ] = await Promise.all([
+    supabase
+      .from('profiles')
+      .select('display_name, points')
+      .order('points', { ascending: false })
+      .limit(3),
+    
+    supabase
+      .from('profiles')
+      .select('*', { count: 'exact', head: true }),
 
-  const { count: studentCount } = await supabase
-    .from('profiles')
-    .select('*', { count: 'exact', head: true })
+    supabase
+      .from('rooms')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_active', true),
 
-  const { count: roomCount } = await supabase
-    .from('rooms')
-    .select('*', { count: 'exact', head: true })
-    .eq('is_active', true)
-
-  const { count: qaCount } = await supabase
-    .from('qa_posts')
-    .select('*', { count: 'exact', head: true })
+    supabase
+      .from('qa_posts')
+      .select('*', { count: 'exact', head: true })
+  ])
 
   const medals = ['🥇', '🥈', '🥉']
 
@@ -115,10 +126,12 @@ export default async function LandingPage() {
             {/* Hero image */}
             <div className="mt-16 max-w-5xl mx-auto">
               <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-indigo-100 border border-slate-100 ring-1 ring-slate-900/5 aspect-video bg-slate-100">
-                <img
+                <Image
                   src="/product_mockup.png"
                   alt="PupilNetwork Dashboard Mockup showing study rooms and AI Buddy"
-                  className="w-full h-full object-cover"
+                  fill
+                  priority
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">

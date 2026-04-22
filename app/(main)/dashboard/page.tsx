@@ -15,42 +15,46 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
-  // Get profile
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single()
-
-  // Get AI Usage (fetch stats)
+  // 2. Fetch all data in parallel for maximum speed
   const fiveHoursAgo = new Date(Date.now() - 18000000).toISOString()
-  const { data: aiUsage } = await supabase
-    .from('ai_usage')
-    .select('count')
-    .eq('user_id', user.id)
-    .gte('window_start', fiveHoursAgo)
-    .single()
+  const [
+    { data: profile },
+    { data: aiUsage },
+    { data: recentRooms },
+    { data: recentQA }
+  ] = await Promise.all([
+    supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single(),
+    
+    supabase
+      .from('ai_usage')
+      .select('count')
+      .eq('user_id', user.id)
+      .gte('window_start', fiveHoursAgo)
+      .single(),
 
-  // Get recent active rooms
-  const { data: recentRooms } = await supabase
-    .from('rooms')
-    .select(`
-      id, name, subject, description, member_count, created_at,
-      creator:profiles(display_name)
-    `)
-    .eq('is_active', true)
-    .order('member_count', { ascending: false })
-    .limit(4)
+    supabase
+      .from('rooms')
+      .select(`
+        id, name, subject, description, member_count, created_at,
+        creator:profiles(display_name)
+      `)
+      .eq('is_active', true)
+      .order('member_count', { ascending: false })
+      .limit(4),
 
-  // Get recent QA
-  const { data: recentQA } = await supabase
-    .from('qa_posts')
-    .select(`
-      id, title, subject, upvotes, answer_count, is_solved, created_at,
-      author:profiles(id, display_name)
-    `)
-    .order('created_at', { ascending: false })
-    .limit(5)
+    supabase
+      .from('qa_posts')
+      .select(`
+        id, title, subject, upvotes, answer_count, is_solved, created_at,
+        author:profiles(id, display_name)
+      `)
+      .order('created_at', { ascending: false })
+      .limit(5)
+  ])
 
   return (
     <div className="space-y-8">
