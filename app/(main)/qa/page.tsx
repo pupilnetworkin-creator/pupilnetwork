@@ -119,10 +119,8 @@ export default function QABoardPage() {
         </div>
 
         <Dialog open={createOpen} onOpenChange={setCreateOpen}>
-          <DialogTrigger asChild>
-            <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2 h-14 px-8 rounded-2xl shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 font-bold">
-              <Plus className="w-5 h-5" /> Ask a Question
-            </Button>
+          <DialogTrigger render={<Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2 h-14 px-8 rounded-2xl shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 font-bold" />}>
+            <Plus className="w-5 h-5" /> Ask a Question
           </DialogTrigger>
           <DialogContent className="sm:max-w-[600px] rounded-[2rem] p-0 overflow-hidden border-none shadow-2xl">
             <div className="bg-gradient-to-br from-indigo-600 to-violet-700 p-8 text-white">

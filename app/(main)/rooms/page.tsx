@@ -114,10 +114,8 @@ export default function RoomsPage() {
         </div>
 
         <Dialog open={createOpen} onOpenChange={setCreateOpen}>
-          <DialogTrigger asChild>
-            <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2 h-14 px-8 rounded-2xl shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 font-bold">
-              <Plus className="w-5 h-5" /> Create New Room
-            </Button>
+          <DialogTrigger render={<Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2 h-14 px-8 rounded-2xl shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 font-bold" />}>
+            <Plus className="w-5 h-5" /> Create New Room
           </DialogTrigger>
           <DialogContent className="sm:max-w-[450px] rounded-[2rem] p-0 overflow-hidden border-none shadow-2xl">
             <div className="bg-gradient-to-br from-indigo-600 to-violet-700 p-8 text-white">
@@ -155,7 +153,7 @@ export default function RoomsPage() {
                 </Label>
                 <Select 
                   value={newRoom.duration} 
-                  onValueChange={(val) => setNewRoom({...newRoom, duration: val})}
+                  onValueChange={(val) => setNewRoom({...newRoom, duration: val ?? '60'})}
                 >
                   <SelectTrigger id="duration" className="h-12 rounded-xl bg-muted/50 border-none focus-visible:ring-2 focus-visible:ring-indigo-500">
                     <SelectValue placeholder="Choose duration" />

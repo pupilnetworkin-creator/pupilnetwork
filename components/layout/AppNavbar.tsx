@@ -133,7 +133,7 @@ export default function AppNavbar() {
                       className="font-sans antialiased text-xs font-black text-white shadow-inner"
                       style={{ backgroundColor: profile?.avatar_color || '#6366f1' }}
                     >
-                      {getInitials(profile?.display_name || user.username || 'U')}
+                      {getInitials(profile?.display_name || profile?.username || 'U')}
                     </AvatarFallback>
                   </Avatar>
                   <div className="hidden sm:flex flex-col items-start pr-2">
