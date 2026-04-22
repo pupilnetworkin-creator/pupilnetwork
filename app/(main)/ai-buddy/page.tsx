@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { AIChatWindow } from '@/components/ai/AIChatWindow'
+import { Sparkles } from 'lucide-react'
 
 export default async function AIBuddyPage(props: { searchParams: Promise<{ q?: string }> }) {
   const searchParams = await props.searchParams;
@@ -58,7 +59,7 @@ export default async function AIBuddyPage(props: { searchParams: Promise<{ q?: s
       </div>
 
       {/* Chat Window Container */}
-      <div className="flex-1 min-h-0 bg-card/50 backdrop-blur-xl rounded-[2.5rem] border border-border/50 shadow-2xl shadow-indigo-500/5 overflow-hidden flex flex-col transition-all group-hover:border-indigo-500/20">
+      <div className="flex-1 min-h-0 glass-card rounded-[2.5rem] overflow-hidden flex flex-col transition-all group-hover:border-indigo-500/20">
         <AIChatWindow 
           initialQuery={initialQuery} 
           isPremium={isPremium} 
