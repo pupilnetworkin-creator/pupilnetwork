@@ -42,7 +42,8 @@ export default async function LandingPage() {
     supabase
       .from('rooms')
       .select('*', { count: 'exact', head: true })
-      .eq('is_active', true),
+      .eq('is_active', true)
+      .gt('expires_at', new Date().toISOString()),
 
     supabase
       .from('qa_posts')

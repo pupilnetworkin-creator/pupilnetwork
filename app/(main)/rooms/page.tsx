@@ -38,10 +38,11 @@ export default function RoomsPage() {
     const { data, error } = await supabase
       .from('rooms')
       .select(`
-        id, name, subject, description, member_count, created_at,
+        id, name, subject, description, member_count, created_at, expires_at,
         creator:profiles!rooms_created_by_fkey(id, display_name)
       `)
       .eq('is_active', true)
+      .gt('expires_at', new Date().toISOString())
       .order('created_at', { ascending: false })
 
     if (!error && data) {

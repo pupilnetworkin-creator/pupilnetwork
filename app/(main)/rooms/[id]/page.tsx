@@ -83,7 +83,7 @@ export default async function RoomPage(props: { params: Promise<{ id: string }> 
         </div>
 
         <div className="flex items-center gap-4">
-          <RoomTimer expiresAt={room.expires_at} />
+          <RoomTimer roomId={roomId} expiresAt={room.expires_at} />
           {room.description && (
             <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-lg max-w-sm truncate border border-border">
               <Info className="w-4 h-4 shrink-0 text-indigo-400" />

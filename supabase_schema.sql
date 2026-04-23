@@ -58,6 +58,7 @@ create table public.rooms (
   is_active boolean default true,
   member_count integer default 1,
   created_by uuid references public.profiles(id) on delete set null,
+  expires_at timestamp with time zone,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 

@@ -39,10 +39,11 @@ export default async function DashboardPage() {
     supabase
       .from('rooms')
       .select(`
-        id, name, subject, description, member_count, created_at,
+        id, name, subject, description, member_count, created_at, expires_at,
         creator:profiles(display_name)
       `)
       .eq('is_active', true)
+      .gt('expires_at', new Date().toISOString())
       .order('member_count', { ascending: false })
       .limit(4),
 

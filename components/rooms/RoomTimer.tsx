@@ -1,15 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
+import { toast } from 'sonner'
 import { Clock, AlertCircle } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
 interface RoomTimerProps {
+  roomId: string
   expiresAt: string | null
   onExpire?: () => void
 }
 
-export function RoomTimer({ expiresAt, onExpire }: RoomTimerProps) {
+export function RoomTimer({ roomId, expiresAt, onExpire }: RoomTimerProps) {
+  const router = useRouter()
+  const supabase = createClient()
   const [timeLeft, setTimeLeft] = useState<string>('')
   const [isUrgent, setIsUrgent] = useState(false)
   const [isExpired, setIsExpired] = useState(false)
@@ -26,7 +32,9 @@ export function RoomTimer({ expiresAt, onExpire }: RoomTimerProps) {
         setTimeLeft('Expired')
         setIsExpired(true)
         clearInterval(interval)
-        if (onExpire) onExpire()
+        
+        // Deactivate room and kick out
+        handleExpiration()
         return
       }
 
@@ -47,7 +55,23 @@ export function RoomTimer({ expiresAt, onExpire }: RoomTimerProps) {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [expiresAt, onExpire])
+  }, [expiresAt, onExpire, roomId])
+
+  async function handleExpiration() {
+    // 1. Mark as inactive in DB (so it doesn't show in lists)
+    await supabase.from('rooms').update({ is_active: false }).eq('id', roomId)
+    
+    // 2. Notify and redirect
+    toast.error('Session expired. Redirecting...', {
+      description: 'This study room has reached its time limit.'
+    })
+    
+    if (onExpire) onExpire()
+    
+    setTimeout(() => {
+      router.push('/rooms')
+    }, 2000)
+  }
 
   if (!expiresAt) return null
 
