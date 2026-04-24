@@ -17,6 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pupilnetwork-seven.vercel.app'),
   title: {
     default: 'PupilNetwork — Study Smarter, Together',
     template: '%s | PupilNetwork',
@@ -24,6 +25,12 @@ export const metadata: Metadata = {
   description:
     'Join live study rooms, ask questions, get AI help — all in one place. The student study collaboration platform built for India.',
   keywords: ['study', 'students', 'collaboration', 'Q&A', 'AI tutor', 'India', 'college'],
+  alternates: {
+    canonical: '/',
+  },
+  icons: {
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'PupilNetwork — Study Smarter, Together',
     description: 'Join live study rooms, ask questions, get AI help — all in one place.',
