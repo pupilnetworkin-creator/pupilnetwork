@@ -439,6 +439,40 @@ export default async function LandingPage() {
       </main>
 
       <Footer />
+      <SEOContent />
     </div>
+  )
+}
+
+function SEOContent() {
+  return (
+    <section className="sr-only">
+      <h2>About PupilNetwork Study Platform</h2>
+      <p>
+        PupilNetwork is the ultimate student collaboration platform designed specifically for the Indian academic landscape. 
+        Our platform bridges the gap between traditional learning and modern digital tools by offering a centralized hub for all study needs.
+      </p>
+      <h3>Comprehensive Study Tools</h3>
+      <ul>
+        <li>
+          <strong>Live Study Rooms:</strong> Engaging virtual environments where students can collaborate in real-time, share resources, and participate in peer-led study sessions.
+        </li>
+        <li>
+          <strong>Academic Q&A Board:</strong> A community-driven forum where you can post doubts, get answers from top-performing peers, and earn points for your contributions.
+        </li>
+        <li>
+          <strong>AI-Powered Tutoring:</strong> Leverage the power of Google Gemini 2.0 to get instant explanations, step-by-step solutions, and personalized study assistance 24/7.
+        </li>
+        <li>
+          <strong>Gamified Success:</strong> Stay motivated with our global leaderboard. Earn badges, points, and prestige as you help others succeed in their academic journey.
+        </li>
+      </ul>
+      <h3>Why Students in India Love PupilNetwork</h3>
+      <p>
+        Unlike fragmented tools like WhatsApp or expensive alternatives like Chegg, PupilNetwork provides a focused, ad-free environment. 
+        Whether you're preparing for JEE, medical exams, or college finals, our platform offers the support and community you need to excel. 
+        Join thousands of students who are already studying smarter, together.
+      </p>
+    </section>
   )
 }
